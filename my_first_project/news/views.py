@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-def index(response):
-    return HttpResponse('<h1>Hello world !</h1>')
+from .models import News
 
-def test(response):
-    return HttpResponse('<h1>Тестовая страница</h1>')
-    
+def index(request):
+    news = News.objects.order_by('-created_at')
+    context = {
+        'news': news,
+         'title': 'Список новостей',
+         }
+    return render(request, 'news/index.html', context)
+
+
     
