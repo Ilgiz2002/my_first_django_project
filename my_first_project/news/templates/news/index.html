@@ -39,9 +39,17 @@
                         Категория : {{ item.category.title }}
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{ item.title }}</h5>
-                        <p class="card-text">{{ item.content }}</p>
-                        <a href="#" class="btn btn-primary">Read more ...</a>
+                        <div class="media d-flex align-items-center">
+                            {% if item.photo %}
+                            <img src="{{ item.photo.url }}" class="mr-5" alt="">
+                            {% endif %}
+                            <div class="media-body">
+                                <h5 class="card-title text-center">{{ item.title }}</h5>
+                                <p class="card-text">{{ item.content|truncatewords:150 }}</p>
+                                <a href="#" class="btn btn-primary">Read more ...</a>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-footer text-muted ">
                         <div class="row justify-content-between ml-3 mr-3">
@@ -53,6 +61,8 @@
                     </div>
                 </div>
             </div>
+            {% empty %}
+            <li>Ошибка! Объект не найден</li>
             {% endfor %}
         </div>
     </div>
