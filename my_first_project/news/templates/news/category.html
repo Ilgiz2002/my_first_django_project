@@ -27,7 +27,7 @@
                 <div class="media-body">
                     <h5 class="card-title text-center">{{ item.title }}</h5>
                     <p class="card-text">{{ item.content|truncatewords:150 }}</p>
-                    <a href="get_absolute_url" class="btn btn-primary">Read more ...</a>
+                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more ...</a>
                 </div>
             </div>
 
