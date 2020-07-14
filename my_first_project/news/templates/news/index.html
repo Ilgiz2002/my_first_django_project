@@ -5,19 +5,10 @@
 {% endblock %}
 
 {% block sidebar %}
-<div class="col-md-4">
-    <div class="list-group">
-        {% for item in categories %}
-        <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">
-            {{ item.title }}
-        </a>
-        {% endfor %}
-    </div>
-</div>
+{% include 'inc/_sidebar.html' %}
 {% endblock %}
 
 {% block content %}
-<div class="col-md-8">
     {% for item in news %}
     <div class="card mb-5">
         <div class="card-header">
@@ -48,5 +39,4 @@
     {% empty %}
     <li>Ошибка! Объект не найден</li>
     {% endfor %}
-</div>
 {% endblock %}
