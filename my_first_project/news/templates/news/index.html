@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block sidebar %}
-{% include 'inc/_sidebar.html' %}
+
+{% load news_tags %}
+{% show_categories %}
+
 {% endblock %}
 
 {% block content %}
