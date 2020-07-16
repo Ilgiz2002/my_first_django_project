@@ -1,3 +1,7 @@
 body{
     background-color: #fefefe73;
 }
+.errorlist{
+    color:red;
+    font-size: 18px;
+}
