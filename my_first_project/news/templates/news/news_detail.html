@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{object.title}} :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+
+{% include 'inc/_sidebar.html' %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="card mb-5">
+    <div class="card-header">
+        Категория :
+        <a href="{{ object.category.get_absolute_url }}">
+            {{ object.category.title }}
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="media d-flex align-items-center">
+            {% if object.photo %}
+            <img src="{{ object.photo.url }}" class="mr-5" alt="">
+            {% endif %}
+            <div class="media-body">
+                <h5 class="card-title text-center">{{ object.title }}</h5>
+                <p class="card-text">{{ object.content }}</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer text-muted ">
+        <div class="row justify-content-between ml-3 mr-3">
+            <div class="col-auto"> Дата добавления : {{ object.created_at|date:"Y-m-d H:i" }}</div>
+            <div class="col-auto">
+                Дата обновления : {{ object.update_at|date:"Y-m-d H:i" }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
