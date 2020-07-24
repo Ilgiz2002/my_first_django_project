@@ -13,7 +13,7 @@ register = template.Library()
 
 @register.inclusion_tag('news/list_categories.html')
 def show_categories():
-    categories = Category.objects.annotate(cnt=Count('news__is_published'))
+    categories = Category.objects.annotate(cnt=Count('news')).filter(cnt__gt=0)
     return { 
         'categories': categories,
     }
