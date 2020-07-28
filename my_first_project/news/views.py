@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import News, Category
 from .forms import NewsForm
 
 class HomeNews(ListView):
     model = News
+    paginate_by = 2
     # template_name = 'news/home_news_list.html'
     # context_object_name = 'news'
     # extra_context = {'title': "Главная"}
@@ -22,6 +24,7 @@ class HomeNews(ListView):
 
 class NewsByCategory(ListView):
     model = News
+    paginate_by = 2
     # template_name = 'news/home_news_list.html'
     # context_object_name = 'news'
     allow_empty = False
@@ -41,9 +44,12 @@ class ViewNews(DetailView):
     # context_object_name = 'news_item' 
 
 
-class CreateNews(CreateView):
+class CreateNews(LoginRequiredMixin ,CreateView):
     form_class = NewsForm
     template_name = 'news/add_news.html'
+
+    login_url = '/admin/'
+
 
 
 
