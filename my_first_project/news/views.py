@@ -5,9 +5,26 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
+from django.core.mail import send_mail
 
 from .models import News, Category
-from .forms import NewsForm, UserRegisterForm, UserLoginForm
+from .forms import NewsForm, UserRegisterForm, UserLoginForm, ContactForm
+
+def call_back(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid(): 
+            mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 'ilgizayupov7@gmail.com', ['dunyamaliev.eldar.09@gmail.com'], fail_silently=False)
+            
+            if mail:
+                messages.success(request, 'Письмо отправлено')
+                return redirect('home')
+            else:
+                messages.error(request, 'Ошибка отправки')
+    else:
+        form = ContactForm()
+    return render(request, 'news/call_back.html', {'form': form})
+
 
 def register(request):
     if request.method == 'POST':

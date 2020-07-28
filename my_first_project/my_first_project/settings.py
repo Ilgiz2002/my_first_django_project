@@ -131,3 +131,12 @@ MEDIA_URL = '/media/'
 
 
 INTERNAL_IPS = ['127.0.0.1',]
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = True
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'Ilgiz Ayupov'
+EMAIL_HOST_USER = 'ilgizayupov7@gmail.com'
+EMAIL_HOST_PASSWORD = 'eldar.2009-ilgiz.2002'
